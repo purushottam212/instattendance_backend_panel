@@ -39,6 +39,10 @@ public class Classes {
 	@JsonIgnore
 	private Set<Students> students = new HashSet<Students>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "className",cascade = CascadeType.ALL)
+	private Set<Subjects> subjects =  new HashSet<Subjects>();
+	
 	public Integer getId() {
 		return id;
 	}
