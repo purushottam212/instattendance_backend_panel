@@ -9,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AssignRolesDTO {
+public class AssignRolesDto {
 	
 	private String teacherEmail;
 	private Integer roleId;

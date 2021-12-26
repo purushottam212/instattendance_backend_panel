@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.instattendance.admin.dto.AssignRolesDTO;
-import com.instattendance.admin.dto.AuthenticateTeacherDTO;
+import com.instattendance.admin.dto.AssignRolesDto;
+import com.instattendance.admin.dto.AuthenticateTeacherDto;
 import com.instattendance.admin.teachers.entity.Teachers;
 import com.instattendance.admin.teachers.service.TeachersService;
 
@@ -41,11 +41,11 @@ public class TeachersController {
     	return  teachersService.deleteTeacher(email);
     }
     @PostMapping("/teachers/authenticate")
-    public Teachers authenticateTeacher(@RequestBody @Validated AuthenticateTeacherDTO login) {
+    public Teachers authenticateTeacher(@RequestBody @Validated AuthenticateTeacherDto login) {
     	return teachersService.authenticateTeacher(login);
     }
     @PostMapping("/teachers/assignroles")
-    public Teachers assignRoles(@RequestBody @Validated AssignRolesDTO roleInfo) {
+    public Teachers assignRoles(@RequestBody @Validated AssignRolesDto roleInfo) {
     	return teachersService.assignRoles(roleInfo);
     }
     

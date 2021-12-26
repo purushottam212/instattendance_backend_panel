@@ -7,8 +7,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.instattendance.admin.dto.AssignRolesDTO;
-import com.instattendance.admin.dto.AuthenticateTeacherDTO;
+import com.instattendance.admin.dto.AssignRolesDto;
+import com.instattendance.admin.dto.AuthenticateTeacherDto;
 import com.instattendance.admin.teachers.entity.Teachers;
 import com.instattendance.admin.teachers.repository.TeachersRepository;
 import com.instattendance.admin.teachers.roles.entity.Roles;
@@ -43,7 +43,7 @@ public class TeachersService {
 		return "Error ";
 	}
 	
-	public Teachers authenticateTeacher(AuthenticateTeacherDTO login) {
+	public Teachers authenticateTeacher(AuthenticateTeacherDto login) {
 		Teachers teacher = teachersRepository.findById(login.getEmail()).get();
 		if(teacher != null) {
 			if(teacher.getEmail() == login.getEmail() && teacher.getPassword() == login.getPassword()) {
@@ -56,7 +56,7 @@ public class TeachersService {
 		return null;
 	}
 	
-	public Teachers assignRoles(AssignRolesDTO roleInfo) {
+	public Teachers assignRoles(AssignRolesDto roleInfo) {
 		
 	   if(roleInfo != null) {
 		   Roles role = rolesRepository.findById(roleInfo.getRoleId()).get();
