@@ -24,6 +24,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
 	@Query(value="select * from attendance_record a where a.date BETWEEN  :#{#attendanceBetweenDatesBySub.startDate} AND  :#{#attendanceBetweenDatesBySub.endDate} AND a.class = :#{#attendanceBetweenDatesBySub.className} AND a.division=:#{#attendanceBetweenDatesBySub.divName} AND a.subject = :#{#attendanceBetweenDatesBySub.subject}",nativeQuery = true)
 	 List<Attendance>getAttendanceBetweenDatesByClassDivAndSubj(@Param("attendanceBetweenDatesBySub") AttendanceBetweenDatesDto attendance);
 	
+	@Query(value="select * from attendance_record a where a.class=:#{#attendanceInfo.className} and a.division =:#{#attendanceInfo.divisionName} and a.subject=:#{#attendanceInfo.subjectName}",nativeQuery = true)
+	   List<Attendance> getAttendanceByClassDivSubject(@Param("attendanceInfo") AttendanceDto attendanceInfo);	
 	
 
 }

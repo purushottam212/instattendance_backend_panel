@@ -11,6 +11,6 @@ import lombok.ToString;
 @ToString
 public class AuthenticateTeacherDto {
 
-	private String email;
-	private String password;
+	private String teacherEmail;
+	private String teacherPassword;
 }

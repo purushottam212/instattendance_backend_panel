@@ -32,4 +32,8 @@ public class ClassesService {
 		}
 		return "Error Occured";
 	}
+	
+	public Classes findClassByName(String name) {
+		return classesRepository.findByClassName(name);
+	}
 }

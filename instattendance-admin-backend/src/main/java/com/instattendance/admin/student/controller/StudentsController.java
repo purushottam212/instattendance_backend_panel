@@ -3,7 +3,8 @@ package com.instattendance.admin.student.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.instattendance.admin.student.service.StudentsService;
 
 @RestController
 @JsonView(StudentsFieldFilter.Base.class)
+@CrossOrigin
 public class StudentsController {
 	@Autowired
 	StudentsService service;
@@ -53,7 +55,7 @@ public class StudentsController {
 		return service.updateStudents(student);
 	}
    @PostMapping("/studentsByClassAndDiv")
-    public List<Students> getStudentsByClassAndDivision(@RequestBody StudentsByClassAndDivision classAndDivision){
+    public List<Students> getStudentsByClassAndDivision(@RequestBody @Validated StudentsByClassAndDivision classAndDivision){
 	   
 		return service.getStudentsByClassAndDivision(classAndDivision);
     	/*List<Students> students =  service.getStudentsByClassAndDivision(classAndDivision);

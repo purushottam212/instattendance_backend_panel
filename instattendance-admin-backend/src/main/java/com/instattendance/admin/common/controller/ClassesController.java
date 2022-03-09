@@ -3,6 +3,7 @@ package com.instattendance.admin.common.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import com.instattendance.admin.common.entity.Classes;
 import com.instattendance.admin.common.service.ClassesService;
 
 @RestController
+@CrossOrigin
 public class ClassesController {
 
 	@Autowired
@@ -38,6 +40,11 @@ public class ClassesController {
 	public String deleteClass(@PathVariable Integer id) {
 		String result = classesService.deleteClass(id);
 		return result;
+	}
+	
+	@GetMapping("/findClassByName/{className}")
+	public Classes findClassByName(@PathVariable String className) {
+		return classesService.findClassByName(className);
 	}
 	
 }

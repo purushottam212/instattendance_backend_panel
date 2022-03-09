@@ -40,4 +40,20 @@ public class AttendanceService {
 		return attendanceRepository.getAttendanceBetweenDatesByClassDivAndSubj(attendance);
 	}
 	
+	public String deleteAttendance(Integer id) {
+		if(id != null) {
+			attendanceRepository.deleteById(id);
+			return"deleted successfully";
+		}
+		
+		return "Error";
+			
+	}
+	
+	public List<Attendance>getAttendanceByClassSubDiv(AttendanceDto attendanceInformation){
+		return attendanceRepository.getAttendanceByClassDivSubject(attendanceInformation);
+	}
+		
+	
+	
 }

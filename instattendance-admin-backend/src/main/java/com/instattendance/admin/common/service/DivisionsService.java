@@ -3,6 +3,7 @@ package com.instattendance.admin.common.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.instattendance.admin.common.entity.Divisions;
@@ -23,7 +24,7 @@ public class DivisionsService {
 	}
 	
 	public List<Divisions> getAllDivisions(){
-		return divisionsRepository.findAll();
+		return divisionsRepository.findAll(Sort.by(Sort.Direction.ASC, "divisionName"));
 	}
 	
 	public String deleteDivision(Integer id) {
@@ -33,5 +34,9 @@ public class DivisionsService {
 		}
 		return "wrong";
 		 
+	}
+	
+	public Divisions findDivisionByName(String divName) {
+		return divisionsRepository.findByDivisionName(divName);
 	}
 }

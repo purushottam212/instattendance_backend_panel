@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class StudentsByClassAndDivision {
 	
-	private Integer class_id;
-	private Integer div_id;
+	private Integer classId;
+	private Integer divId;
 
 }

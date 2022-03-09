@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.instattendance.admin.fiterFields.RolesFieldFilter;
 import com.instattendance.admin.teachers.roles.entity.Roles;
 import com.instattendance.admin.teachers.roles.service.RolesService;
 
@@ -25,11 +27,13 @@ public class RolesController {
 	}
 	
 	@GetMapping("/roles/{id}")
+	
 	public Roles getRoleById(@PathVariable Integer id) {
 		return rolesService.getRolesById(id);
 	}
 	
 	@GetMapping("/roles")
+	@JsonView(RolesFieldFilter.Base.class)
 	public List<Roles> getAllRoles(){
 		return rolesService.getAllRoles();
 	} 

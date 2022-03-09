@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.instattendance.admin.fiterFields.RolesFieldFilter;
 import com.instattendance.admin.teachers.entity.Teachers;
 
 import lombok.AllArgsConstructor;
@@ -24,10 +27,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="roles")
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Roles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(RolesFieldFilter.Base.class)
 	private Integer id;
 	public Integer getId() {
 		return id;
@@ -45,7 +49,8 @@ public class Roles {
 		this.roleName = roleName;
 	}
 
-	@JsonBackReference
+	@JsonIgnore
+	//@JsonBackReference
 	public Set<Teachers> getTeachers() {
 		return teachers;
 	}
@@ -54,10 +59,11 @@ public class Roles {
 		this.teachers = teachers;
 	}
 
+	@JsonView(RolesFieldFilter.Base.class)
 	@Column(name = "role")
 	private String roleName;
 	
-	@JsonBackReference
+	
 	@ManyToMany(mappedBy = "roles")
 	private Set<Teachers> teachers;
 

@@ -12,8 +12,8 @@ import com.instattendance.admin.student.entity.Students;
 
 public interface StudentsRepository extends JpaRepository<Students, String> {
 
-	@Query(value="select * from students s where s.class_id = :#{#classAndDivision.class_id} and s.div_id = :#{#classAndDivision.div_id}", nativeQuery = true)
-	List<Students> getStudentsByClassAndDivision( @Param("classAndDivision")  StudentsByClassAndDivision classAndDivision);
+	@Query(value="select * from students s where s.class_id = :#{#classAndDivision.classId} and s.div_id = :#{#classAndDivision.divId}", nativeQuery = true)
+	List<Students> findStudentsByClassAndDivision( @Param("classAndDivision")  StudentsByClassAndDivision classAndDivision);
 	
 	@Query(value="SELECT sql6460288.classes.class,sql6460288.divisions.division\r\n"
 			+ "	  FROM sql6460288.students\r\n"

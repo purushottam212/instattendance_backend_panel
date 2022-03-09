@@ -13,8 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.instattendance.admin.fiterFields.DivisionsFieldFilter;
 import com.instattendance.admin.student.entity.Students;
 
 import lombok.AllArgsConstructor;
@@ -24,26 +29,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="divisions")
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="div_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Divisions {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@JsonView(DivisionsFieldFilter.Base.class)
+	private Integer div_id;
 	
 	@Column(name="division")
+	@JsonView(DivisionsFieldFilter.Base.class)
 	private String divisionName;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "studentDivision",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Students> students = new HashSet<Students>();
 	
+	
 	public Integer getId() {
-		return id;
+		return div_id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.div_id = id;
 	}
 	public String getDivisionName() {
 		return divisionName;
@@ -51,7 +60,7 @@ public class Divisions {
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
 	}
-	
+	//@JsonManagedReference
 	public Set<Students> getStudents() {
 		return students;
 	}

@@ -89,7 +89,7 @@ public class StudentsService {
 	}
 	
 	public List<Students> getStudentsByClassAndDivision(StudentsByClassAndDivision classAndDivision){
-		return studentsRepository.getStudentsByClassAndDivision(classAndDivision);
+		return studentsRepository.findStudentsByClassAndDivision(classAndDivision);
 	}
 	
 	public String getStudentClassAndDivision(String roll_no) {

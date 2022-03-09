@@ -12,9 +12,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.instattendance.admin.fiterFields.TeachersFieldFilter;
 import com.instattendance.admin.teachers.roles.entity.Roles;
 
 import lombok.AllArgsConstructor;
@@ -26,18 +29,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="teachers")
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="email")
 public class Teachers {
 
 	
 
 	@Id
+	@JsonView(TeachersFieldFilter.Base.class)
 	private String email;
+	@JsonView(TeachersFieldFilter.Base.class)
 	private String password;
+	@JsonView(TeachersFieldFilter.Base.class)
 	private String name;
+	@JsonView(TeachersFieldFilter.Base.class)
 	private String designation;
 	
-	@JsonManagedReference
+	
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinTable(name="teacher_roles",
 	      joinColumns = {@JoinColumn(name="teacher_id")},
@@ -77,7 +84,8 @@ public class Teachers {
 		this.designation = designation;
 	}
 
-	@JsonManagedReference
+	
+	//@JsonManagedReference
 	public Set<Roles> getRoles() {
 		return roles;
 	}

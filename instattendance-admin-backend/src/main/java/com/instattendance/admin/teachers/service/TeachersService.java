@@ -44,16 +44,11 @@ public class TeachersService {
 	}
 	
 	public Teachers authenticateTeacher(AuthenticateTeacherDto login) {
-		Teachers teacher = teachersRepository.findById(login.getEmail()).get();
-		if(teacher != null) {
-			if(teacher.getEmail() == login.getEmail() && teacher.getPassword() == login.getPassword()) {
-				return teacher;
-			}
-			else {
-				return null;
-			}
+		Teachers teacher = teachersRepository.getTeacherByEmailAndPassword(login.getTeacherEmail(),login.getTeacherPassword());
+		if(teacher == null) {
+			return null;
 		}
-		return null;
+		return teacher;
 	}
 	
 	public Teachers assignRoles(AssignRolesDto roleInfo) {
