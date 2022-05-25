@@ -9,21 +9,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.instattendance.admin.common.entity.Classes;
 import com.instattendance.admin.common.entity.Divisions;
 import com.instattendance.admin.fiterFields.StudentsFieldFilter;
+import com.instattendance.admin.practical_batches.entity.PracticalBatch;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
@@ -50,6 +46,9 @@ public class Students {
 	private String name;
 	
 	
+	private String practicalBatch;
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	//@Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "class_id")
@@ -61,6 +60,8 @@ public class Students {
     @JoinColumn(name = "div_id")
 	
 	private Divisions studentDivision;
+	
+	
 	
      public String getRollNo() {
 		return rollNo;
@@ -103,6 +104,16 @@ public class Students {
 	public void setStudentDivision(Divisions studentDivision) {
 		this.studentDivision = studentDivision;
 	}
+
+	public String getPracticalBatch() {
+		return practicalBatch;
+	}
+
+	public void setPracticalBatch(String practicalBatch) {
+		this.practicalBatch = practicalBatch;
+	}
+
+	
 
 	
 	

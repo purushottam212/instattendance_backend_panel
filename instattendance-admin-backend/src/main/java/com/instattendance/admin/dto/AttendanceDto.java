@@ -21,6 +21,8 @@ public class AttendanceDto {
 	
 	private String subjectName;
 	
+	private String batchName;
+	
 
 
 }

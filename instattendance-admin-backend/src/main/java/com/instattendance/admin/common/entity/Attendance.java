@@ -47,6 +47,9 @@ public class Attendance {
 	
 	private String subject;
 	
+	@Column(name="batch")
+	private String batchName;
+	
 	@Column(name="present_students")
 	private String presentStudents;
 	

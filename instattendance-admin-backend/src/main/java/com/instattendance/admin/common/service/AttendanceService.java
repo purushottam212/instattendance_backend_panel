@@ -53,6 +53,11 @@ public class AttendanceService {
 	public List<Attendance>getAttendanceByClassSubDiv(AttendanceDto attendanceInformation){
 		return attendanceRepository.getAttendanceByClassDivSubject(attendanceInformation);
 	}
+	
+	public List<Attendance>getAttendanceByClassDivSubBatch(AttendanceDto attendance){
+		
+		return attendanceRepository.getAttendanceByClassDivSubBAtch(attendance.getClassName(), attendance.getDivisionName(), attendance.getSubjectName(), attendance.getBatchName());
+	}
 		
 	
 	

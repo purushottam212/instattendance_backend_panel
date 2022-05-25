@@ -40,7 +40,7 @@ public class SubjectsService {
 	public String deleteSubjects(Integer id) {
 		if(id != null) {
 			subjectsRepository.deleteById(id);
-			return " Subject Deleted ";
+			return "Subject Deleted";
 		}
 		
 		return "Error";
@@ -55,4 +55,16 @@ public class SubjectsService {
 		
 		return null;
 	} 
+	
+	public List<Subjects>getPracticalsByClassId(String className){
+		
+		Classes findClass = classesRepository.findByClassName(className);
+		
+		if(findClass != null) {
+			return subjectsRepository.getPracticalsByClassId(findClass.getId());
+		}
+		
+		return null;
+		
+	}
 }

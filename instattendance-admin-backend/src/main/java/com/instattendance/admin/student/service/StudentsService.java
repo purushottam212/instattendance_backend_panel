@@ -97,5 +97,10 @@ public class StudentsService {
 		return studentsRepository.getStudentClassAndAdivision(roll_no);
 	} 
 	
+	public List<Students> getStudentsByBatch(String batchName){
+		
+		return studentsRepository.findStudentsByPracticalBatch(batchName);
+	}
+	
 
 }

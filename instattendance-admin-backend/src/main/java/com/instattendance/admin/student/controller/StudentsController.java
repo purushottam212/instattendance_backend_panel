@@ -80,4 +80,10 @@ public class StudentsController {
 	       return classAndDiv;
 	     
    }
+   
+   @GetMapping("/students/batch/{batchName}")
+   public List<Students> getStudentsByBatch(@PathVariable String batchName){
+	   
+	   return service.getStudentsByBatch(batchName);
+   }
 }

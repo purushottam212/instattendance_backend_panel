@@ -21,5 +21,8 @@ public interface StudentsRepository extends JpaRepository<Students, String> {
 			+ "			 INNER JOIN sql6460288.divisions ON sql6460288.divisions.id = sql6460288.students.div_id\r\n"
 			+ "			 WHERE sql6460288.students.roll_no=?1",nativeQuery = true)
 	String getStudentClassAndAdivision(String roll_no);
+	
+	@Query(value = "select * from students s where s.practical_batch = ?1",nativeQuery = true)
+	List<Students> findStudentsByPracticalBatch(String batchName);
 
 }

@@ -53,6 +53,13 @@ public class AttendanceController {
 		return attendanceService.getAttendanceByClassSubDiv(attendanceInfo);
 	}
 	
+	@PostMapping("/getAttendanceByClassSubDivBatch")
+	public List<Attendance> getAttendanceByClassDivSubBatch(@RequestBody AttendanceDto attendanceInfo){
+		return attendanceService.getAttendanceByClassDivSubBatch(attendanceInfo);
+	}
+	
+	
+	
 	@DeleteMapping("/attendance/{id}")
 	public String deleteAttendance(@PathVariable Integer id) {
 		return attendanceService.deleteAttendance(id);
