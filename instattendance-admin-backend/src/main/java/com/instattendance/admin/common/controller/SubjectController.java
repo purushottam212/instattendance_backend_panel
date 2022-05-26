@@ -50,4 +50,9 @@ public class SubjectController {
 	public List<Subjects> getPracticalsByClass(@PathVariable String className){
 		return subjectsService.getPracticalsByClassId(className);
 	}
+	
+	@GetMapping("/subjects/all/{className}")
+	public List<Subjects> getAllSubjectsByClass(@PathVariable String className){
+		return subjectsService.getAllSubjectsByClass(className);
+	}
  }

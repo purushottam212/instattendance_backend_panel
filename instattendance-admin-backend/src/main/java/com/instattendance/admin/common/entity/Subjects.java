@@ -35,6 +35,10 @@ public class Subjects {
 	private Classes className;
 	
 	
+	public Integer getSubjectId() {
+		return subjectId;
+	}
+	
 	public String getName() {
 		return name;
 	}

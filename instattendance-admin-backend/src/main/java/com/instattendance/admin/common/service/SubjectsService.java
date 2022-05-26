@@ -67,4 +67,14 @@ public class SubjectsService {
 		return null;
 		
 	}
+	
+	public List<Subjects> getAllSubjectsByClass(String className){
+		Classes findClass = classesRepository.findByClassName(className);
+		
+		if(findClass != null) {
+			return subjectsRepository.getAllSubjectsByClassId(findClass.getId());
+		}
+		
+		return null;
+	} 
 }

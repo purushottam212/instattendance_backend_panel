@@ -33,7 +33,7 @@ public class Notification {
 	
 	private String message;
 	
-	@Column(name = "date",nullable = false)
+	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private Date date;
 

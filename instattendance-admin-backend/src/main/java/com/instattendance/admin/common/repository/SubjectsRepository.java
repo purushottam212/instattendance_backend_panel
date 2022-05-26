@@ -15,5 +15,8 @@ public interface SubjectsRepository extends JpaRepository<Subjects, Integer> {
 	@Query(value="select * from subjects s where class_name_id = ?1 and is_practical = true",nativeQuery = true)
 	List<Subjects>getPracticalsByClassId(Integer id);
 	
+	@Query(value="select * from subjects s where class_name_id = ?1",nativeQuery = true)
+	List<Subjects>getAllSubjectsByClassId(Integer id);
+	
 
 }
